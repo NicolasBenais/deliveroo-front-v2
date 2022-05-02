@@ -35,6 +35,13 @@ h1 {
   line-height: 29px;
 }
 
+h2 {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  margin: 24px 0;
+}
+
 .MenuItems {
   margin: 0 auto;
   width: 820px;
@@ -45,27 +52,46 @@ h1 {
   flex-wrap: wrap;
 }
 
-.items {
+.item {
   background-color: #fff;
   border-radius: 15px;
   margin-right: 20px;
   margin-bottom: 20px;
   width: 380px;
-}
-
-.item {
   display: flex;
   height: 160px;
+  padding: 15px;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.left-part-item {
+  margin-right: 8px;
+}
+
+h3 {
+  font-size: 18px;
+  line-height: 16px;
+  margin-bottom: 8px;
 }
 
 .item-description {
   overflow: hidden;
   text-overflow: ellipsis;
   height: 42px;
+  font-size: 14px;
+  line-height: 21px;
+  margin-bottom: 8px;
 }
 
 .item > img {
   width: 130px;
   height: 130px;
   border-radius: 15px;
+  object-fit: cover;
+}
+
+.item:hover {
+  box-shadow: 0 0 10px #333333;
 }

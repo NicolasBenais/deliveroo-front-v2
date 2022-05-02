@@ -37,15 +37,13 @@ function App() {
               <div className="MenuItem">
                 {items.meals.map((item) => {
                   return (
-                    <div className="items">
-                      <div key={item.id} className="item">
-                        <div className="left-part-item">
-                          <h3>{item.title}</h3>
-                          <p className="item-description">{item.description}</p>
-                          <p>{item.price}</p>
-                        </div>
-                        <img src={item.picture} alt="" />
+                    <div key={item.id} className="item">
+                      <div className="left-part-item">
+                        <h3>{item.title}</h3>
+                        <p className="item-description">{item.description}</p>
+                        <p className="price">{item.price} €</p>
                       </div>
+                      {item.picture && <img src={item.picture} alt="" />}
                     </div>
                   );
                 })}
