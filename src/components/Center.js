@@ -1,5 +1,5 @@
-const Center = ({ data }) => {
-  data.categories.map((items, index) => {
+const Center = ({ categories }) => {
+  categories.map((items, index) => {
     return (
       <div className="MenuItems">
         <h2 key={index}> {items.name} </h2>

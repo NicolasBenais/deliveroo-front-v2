@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Center from "./components/Center";
+// import Center from "./components/Center";
 
 function App() {
   const [data, setData] = useState();
@@ -50,17 +50,17 @@ function App() {
 
       {/* -------- CENTER -------- */}
 
-      <Center data={data} />
+      {/* <Center data={data.categories} /> */}
 
-      {/* <div className="center"> */}
-      {/* Menu Title */}
-      {/* {data.categories.map((items, index) => {
+      <div className="center">
+        {/* Menu Title */}
+        {data.categories.map((items, index) => {
           return (
             <div className="MenuItems">
-              <h2 key={index}> {items.name} </h2> */}
+              <h2 key={index}> {items.name} </h2>
 
-      {/* Item */}
-      {/* <div className="MenuItem">
+              {/* Item */}
+              <div className="MenuItem">
                 {items.meals.map((item) => {
                   return (
                     <div key={item.id} className="item">
@@ -76,8 +76,8 @@ function App() {
               </div>
             </div>
           );
-        })} */}
-      {/* </div> */}
+        })}
+      </div>
     </div>
   );
 }
