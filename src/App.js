@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+// import Center from "./components/Center";
 
 function App() {
   const [data, setData] = useState();
@@ -22,18 +23,26 @@ function App() {
     <p>Loading</p>
   ) : (
     <div>
+      <div className="top-bar">
+        <div className="logo">
+          <p>DELIVEROO</p>
+        </div>
+      </div>
+
       <header>
-        <div>
+        {/* <div>
           <img
             src="/Users/nicolasbenais/Dev/LeReacteur/React/06/Exercices/deliveroo-frontend-v2/src/assets/img/Deliveroo-Logo-650x366.png"
             alt=""
           />
+        </div> */}
+        <div className="bottom-bar">
+          <div className="left-part-header">
+            <h1>{data.restaurant.name}</h1>
+            <p>{data.restaurant.description}</p>
+          </div>
+          <img src={data.restaurant.picture} alt="" />
         </div>
-        <div className="left-part-header">
-          <h1>{data.restaurant.name}</h1>
-          <p>{data.restaurant.description}</p>
-        </div>
-        <img src={data.restaurant.picture} alt="" />
       </header>
       <div className="center">
         {data.categories.map((items, index) => {

@@ -7,12 +7,31 @@ body {
   background-color: #f2f5f5;
 }
 
-header > img {
+.bottom-bar > img {
   width: 350px;
   border-radius: 5px;
 }
 
+.top-bar {
+  height: 59px;
+  background-color: #fff;
+  border-bottom: solid 2px #f2f5f5;
+  padding-top: 9px;
+}
+
+.logo > p {
+  height: 70%;
+  width: 1200px;
+  margin: 0 auto;
+  font-size: 40px;
+  font-weight: 600;
+}
+
 header {
+  background-color: #fff;
+}
+
+.bottom-bar {
   width: 1200px;
   display: flex;
   margin: 0 auto;
@@ -33,6 +52,7 @@ h1 {
 .left-part-header > p {
   font-size: 19px;
   line-height: 29px;
+  color: #868a8a;
 }
 
 h2 {
@@ -83,6 +103,7 @@ h3 {
   font-size: 14px;
   line-height: 21px;
   margin-bottom: 8px;
+  color: #808484;
 }
 
 .item > img {
