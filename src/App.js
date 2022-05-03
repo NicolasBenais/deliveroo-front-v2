@@ -7,7 +7,7 @@ function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [cart, setCart] = useState([]);
-  const [subTotal, setSubTotal] = useState([Number(0)]);
+  const [subTotal, setSubTotal] = useState([0]);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -41,14 +41,17 @@ function App() {
         quantity: 1,
       });
       setCart(newCart);
-      setSubTotal(item.price);
+      newSubTotal = Number(cart[index].price) * Number(cart[index].quantity);
+      setSubTotal(newSubTotal);
     } else {
       newCart[index].quantity++;
       setCart(newCart);
-      newSubTotal = cart[index].price * cart[index].quantity;
-      setSubTotal(subTotal + newSubTotal);
+      newSubTotal = Number(cart[index].price) * Number(cart[index].quantity);
+      setSubTotal(Number(subTotal) + newSubTotal);
       console.log(typeof cart[index].price);
       console.log(typeof subTotal);
+      console.log(typeof newSubTotal);
+      console.log(typeof item.price);
       // console.log(newCart[index]);
     }
   };
