@@ -2,6 +2,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 // import Center from "./components/Center";
+import logo from "./assets/img/logo.png";
 
 function App() {
   const [data, setData] = useState();
@@ -25,7 +26,7 @@ function App() {
   const addToCart = (item) => {
     let index;
     const newCart = [...cart];
-    let newSubTotal = [...subTotal];
+
     let isPresent = false;
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].id === item.id) {
@@ -41,17 +42,10 @@ function App() {
         quantity: 1,
       });
       setCart(newCart);
-      newSubTotal = Number(cart[index].price) * Number(cart[index].quantity);
-      setSubTotal(newSubTotal);
     } else {
       newCart[index].quantity++;
       setCart(newCart);
-      newSubTotal = Number(cart[index].price) * Number(cart[index].quantity);
-      setSubTotal(Number(subTotal) + newSubTotal);
-      console.log(typeof cart[index].price);
-      console.log(typeof subTotal);
-      console.log(typeof newSubTotal);
-      console.log(typeof item.price);
+
       // console.log(newCart[index]);
     }
   };
@@ -78,12 +72,9 @@ function App() {
       {/* Top bar */}
       <div className="top-bar">
         <div className="logo">
-          <p>DELIVEROO</p>
+          {/* <p>DELIVEROO</p> */}
 
-          {/* <img
-            src="/Users/nicolasbenais/Dev/LeReacteur/React/06/Exercices/deliveroo-frontend-v2/src/assets/img/Deliveroo-Logo-650x366.png"
-            alt=""
-          /> */}
+          <img src={logo} alt="logo" />
         </div>
       </div>
 
@@ -168,7 +159,7 @@ function App() {
               );
             })}
           </div>
-          <div>{subTotal}</div>
+          <div>{"Total"}</div>
         </div>
       </div>
     </div>

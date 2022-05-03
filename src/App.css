@@ -19,12 +19,15 @@ body {
   padding-top: 9px;
 }
 
-.logo > p {
-  height: 70%;
+.logo {
   width: 1200px;
   margin: 0 auto;
-  font-size: 40px;
-  font-weight: 600;
+}
+
+.logo > img {
+  height: 41px;
+  width: 150px;
+  object-fit: cover;
 }
 
 header {
