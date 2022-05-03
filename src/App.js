@@ -7,6 +7,8 @@ function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [cart, setCart] = useState([]);
+  const [subTotal, setSubTotal] = useState([Number(0)]);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,31 +23,47 @@ function App() {
   }, []);
 
   const addToCart = (item) => {
-    let quantity = 1;
+    let index;
     const newCart = [...cart];
-    for (let i = 0; i <= newCart.length; i++) {
-      console.log(cart.length);
-      if (newCart.length === 0) {
-        newCart.push({
-          id: item.id,
-          title: item.title,
-          price: item.price,
-          quantity: quantity++,
-        });
-        setCart(newCart);
-      } else if (newCart[i].id !== item.id) {
-        newCart.push({
-          id: item.id,
-          title: item.title,
-          price: item.price,
-          quantity: quantity++,
-        });
-        setCart(newCart);
-      } else {
-        newCart.quantity = quantity++;
-        setCart(newCart);
+    let newSubTotal = [...subTotal];
+    let isPresent = false;
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].id === item.id) {
+        index = i;
+        isPresent = true;
       }
     }
+    if (!isPresent) {
+      newCart.push({
+        id: item.id,
+        title: item.title,
+        price: Number(item.price),
+        quantity: 1,
+      });
+      setCart(newCart);
+      setSubTotal(item.price);
+    } else {
+      newCart[index].quantity++;
+      setCart(newCart);
+      newSubTotal = cart[index].price * cart[index].quantity;
+      setSubTotal(subTotal + newSubTotal);
+      console.log(typeof cart[index].price);
+      console.log(typeof subTotal);
+      // console.log(newCart[index]);
+    }
+  };
+
+  const addQuantity = (index) => {
+    // console.log(cart[index]);
+    const newCart = [...cart];
+    newCart[index].quantity++;
+    setCart(newCart);
+  };
+
+  const removeQuantity = (index) => {
+    const newCart = [...cart];
+    newCart[index].quantity--;
+    setCart(newCart);
   };
 
   return isLoading === true ? (
@@ -81,50 +99,73 @@ function App() {
 
       {/* <Center data={data.categories} /> */}
 
-      <div className="center">
-        {/* Menu Title */}
-        {data.categories.map((items, index) => {
-          return (
-            items.meals.length > 0 && (
-              <div className="MenuItems">
-                <h2 key={index}> {items.name} </h2>
-
-                {/* Item */}
-                <div className="MenuItem">
-                  {items.meals.map((item) => {
-                    return (
-                      <div
-                        onClick={() => {
-                          addToCart(item);
-                        }}
-                        key={item.id}
-                        className="item"
-                      >
-                        <div className="left-part-item">
-                          <h3>{item.title}</h3>
-                          <p className="item-description">{item.description}</p>
-                          <p className="price">{item.price} €</p>
-                        </div>
-                        {item.picture && <img src={item.picture} alt="" />}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )
-          );
-        })}
-        <div className="cart">
-          <button>Valider mon panier</button>
-          {cart.map((cartItem) => {
+      <div className="main">
+        <div className="center">
+          {/* Menu Title */}
+          {data.categories.map((items) => {
             return (
-              <div>
-                <div>
-                  {cartItem.quantity} {cartItem.title} {cartItem.price} €
+              items.meals.length > 0 && (
+                <div className="MenuItems">
+                  <h2> {items.name} </h2>
+
+                  {/* Item */}
+                  <div className="MenuItem">
+                    {items.meals.map((item, index) => {
+                      return (
+                        <div
+                          key={item.id}
+                          className="item"
+                          onClick={() => {
+                            addToCart(item, index);
+                          }}
+                        >
+                          <div className="left-part-item">
+                            <h3>{item.title}</h3>
+                            <p className="item-description">
+                              {item.description}
+                            </p>
+                            <p className="price">{Number(item.price)} €</p>
+                          </div>
+                          {item.picture && <img src={item.picture} alt="" />}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+              )
             );
           })}
+        </div>
+
+        <div className="cart">
+          <button>Valider mon panier</button>
+          <div className="line-cart">
+            {cart.map((cartItem, index) => {
+              return (
+                <div>
+                  <div>
+                    <button
+                      onClick={() => {
+                        removeQuantity(index);
+                      }}
+                    >
+                      Minus
+                    </button>
+                    {cartItem.quantity}
+                    <button
+                      onClick={() => {
+                        addQuantity(index);
+                      }}
+                    >
+                      Plus
+                    </button>
+                    {cartItem.title} {cartItem.price} €
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div>{subTotal}</div>
         </div>
       </div>
     </div>
