@@ -23,6 +23,12 @@ function App() {
   ) : (
     <div>
       <header>
+        <div>
+          <img
+            src="/Users/nicolasbenais/Dev/LeReacteur/React/06/Exercices/deliveroo-frontend-v2/src/assets/img/Deliveroo-Logo-650x366.png"
+            alt=""
+          />
+        </div>
         <div className="left-part-header">
           <h1>{data.restaurant.name}</h1>
           <p>{data.restaurant.description}</p>
