@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import Center from "./components/Center";
+import Center from "./components/Center";
 
 function App() {
   const [data, setData] = useState();
@@ -23,19 +23,22 @@ function App() {
     <p>Loading</p>
   ) : (
     <div>
+      {/* -------- HEADER -------- */}
+
+      {/* Top bar */}
       <div className="top-bar">
         <div className="logo">
           <p>DELIVEROO</p>
+
+          {/* <img
+            src="/Users/nicolasbenais/Dev/LeReacteur/React/06/Exercices/deliveroo-frontend-v2/src/assets/img/Deliveroo-Logo-650x366.png"
+            alt=""
+          /> */}
         </div>
       </div>
 
+      {/* Bottom bar */}
       <header>
-        {/* <div>
-          <img
-            src="/Users/nicolasbenais/Dev/LeReacteur/React/06/Exercices/deliveroo-frontend-v2/src/assets/img/Deliveroo-Logo-650x366.png"
-            alt=""
-          />
-        </div> */}
         <div className="bottom-bar">
           <div className="left-part-header">
             <h1>{data.restaurant.name}</h1>
@@ -44,12 +47,20 @@ function App() {
           <img src={data.restaurant.picture} alt="" />
         </div>
       </header>
-      <div className="center">
-        {data.categories.map((items, index) => {
+
+      {/* -------- CENTER -------- */}
+
+      <Center data={data} />
+
+      {/* <div className="center"> */}
+      {/* Menu Title */}
+      {/* {data.categories.map((items, index) => {
           return (
             <div className="MenuItems">
-              <h2 key={index}> {items.name} </h2>
-              <div className="MenuItem">
+              <h2 key={index}> {items.name} </h2> */}
+
+      {/* Item */}
+      {/* <div className="MenuItem">
                 {items.meals.map((item) => {
                   return (
                     <div key={item.id} className="item">
@@ -65,8 +76,8 @@ function App() {
               </div>
             </div>
           );
-        })}
-      </div>
+        })} */}
+      {/* </div> */}
     </div>
   );
 }
