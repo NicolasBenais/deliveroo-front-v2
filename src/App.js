@@ -11,6 +11,15 @@ function App() {
   const [subTotal, setSubTotal] = useState([0]);
   const [total, setTotal] = useState(0);
 
+  // const calculTotal = () => {
+  //   let total = 0;
+  //   cart.forEach(cartItem) => {
+  //     total =+ cartItem.price * item.quantity;
+
+  //   }
+  //   return total.toFixed(2)
+  // }
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
@@ -57,10 +66,16 @@ function App() {
     setCart(newCart);
   };
 
-  const removeQuantity = (index) => {
-    const newCart = [...cart];
-    newCart[index].quantity--;
-    setCart(newCart);
+  const removeQuantity = (cartItem, index) => {
+    if (cartItem.quantity === 1) {
+      const newCart = [...cart];
+      newCart.splice(index, 1);
+      setCart(newCart);
+    } else {
+      const newCart = [...cart];
+      newCart[index].quantity--;
+      setCart(newCart);
+    }
   };
 
   return isLoading === true ? (
@@ -72,8 +87,6 @@ function App() {
       {/* Top bar */}
       <div className="top-bar">
         <div className="logo">
-          {/* <p>DELIVEROO</p> */}
-
           <img src={logo} alt="logo" />
         </div>
       </div>
@@ -90,8 +103,6 @@ function App() {
       </header>
 
       {/* -------- CENTER -------- */}
-
-      {/* <Center data={data.categories} /> */}
 
       <div className="main">
         <div className="center">
@@ -131,6 +142,8 @@ function App() {
           })}
         </div>
 
+        {/* -------- CART -------- */}
+
         <div className="cart">
           <button>Valider mon panier</button>
           <div className="line-cart">
@@ -140,7 +153,7 @@ function App() {
                   <div>
                     <button
                       onClick={() => {
-                        removeQuantity(index);
+                        removeQuantity(cartItem, index);
                       }}
                     >
                       Minus
@@ -159,7 +172,7 @@ function App() {
               );
             })}
           </div>
-          <div>{"Total"}</div>
+          {/* <div>{calculTotal(cartItem)} €</div> */}
         </div>
       </div>
     </div>
